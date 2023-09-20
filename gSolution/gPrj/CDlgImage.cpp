@@ -38,7 +38,7 @@ END_MESSAGE_MAP()
 #include "gPrjDlg.h"
 void CDlgImage::OnBnClickedBtnUpParent()
 {
-	static int n = 100;
+	static int n = MAX_POINT;
 	CgPrjDlg* pDlg = (CgPrjDlg*)m_pParent;
 	pDlg->callFunc(n++);
 
@@ -89,12 +89,14 @@ void CDlgImage::OnPaint()
 	drawData(&dc);
 }
 
-
+#define COLOR_RED RGB(0xff, 0x00, 0x00)
+#define COLOR_GREEN RGB(0x00, 0xff, 0x00)
+#define COLOR_BLUE RGB(0x00, 0x00, 0xff)
 void CDlgImage::drawData(CDC* pDC)
 {
 	CRect rect;
 	CPen pen;
-	pen.CreatePen(PS_SOLID, 5, RGB(0xff, 0, 0));
+	pen.CreatePen(PS_SOLID, 5, COLOR_RED);
 	CPen* pOldPen = pDC->SelectObject(&pen);
 	for (int i = 0; i < m_nDataCount; i++) {
 		rect.SetRect(m_ptData[i], m_ptData[i]);
